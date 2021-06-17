@@ -11,12 +11,29 @@
   DTS:LocaleID="5130"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="1"
-  DTS:VersionGUID="{4EA51868-4C6A-4B15-970B-4BCCEC22AD8C}">
+  DTS:VersionBuild="4"
+  DTS:VersionGUID="{C4510637-A66C-475D-BDD2-CB6FA7AA1C8D}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
   <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Update Users Info"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{70F6FE65-DA28-4E87-A93D-ACB1CBB5B0DB}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Update Users Info"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{F4B88D07-F5A7-463C-9A06-ADCDDFCCE788}"
+          SQLTask:SqlStatementSource="UPDATE dbo.[User] set full_name = 'Melissa Valverde' where id = 767&#xA;UPDATE dbo.[User] set full_name = 'Alejandro Aguero' where id = 675&#xA;UPDATE dbo.[User] set full_name = 'Ashley Leon' where id = 519&#xA;UPDATE dbo.[User] set full_name = 'Josue Arronis' where id = 605&#xA;UPDATE dbo.[User] set full_name = 'Jeison Gonzalez' where id = 613&#xA;UPDATE dbo.[User] set full_name = 'Minor Calderon' where id = 771&#xA;UPDATE dbo.[User] set full_name = 'Evelyn Cruz' where id = 825&#xA;UPDATE dbo.[User] set full_name = 'Edith Winiker' where id = 871&#xA;UPDATE dbo.[User] set full_name = 'Sofia Mora' where id = 874" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\Users"
       DTS:CreationName="Microsoft.Pipeline"
@@ -56,13 +73,6 @@
                       cachedName="email"
                       lineageId="Package\Users\OLE DB Source.Outputs[OLE DB Source Output].Columns[email]" />
                     <inputColumn
-                      refId="Package\Users\Data Conversion.Inputs[Data Conversion Input].Columns[full_name]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="150"
-                      cachedName="full_name"
-                      lineageId="Package\Users\OLE DB Source.Outputs[OLE DB Source Output].Columns[full_name]" />
-                    <inputColumn
                       refId="Package\Users\Data Conversion.Inputs[Data Conversion Input].Columns[role]"
                       cachedDataType="ui1"
                       cachedName="role"
@@ -80,19 +90,17 @@
                       cachedName="active"
                       lineageId="Package\Users\OLE DB Source.Outputs[OLE DB Source Output].Columns[active]" />
                     <inputColumn
-                      refId="Package\Users\Data Conversion.Inputs[Data Conversion Input].Columns[first_name]"
+                      refId="Package\Users\Data Conversion.Inputs[Data Conversion Input].Columns[FirstName]"
                       cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="150"
-                      cachedName="first_name"
-                      lineageId="Package\Users\OLE DB Source.Outputs[OLE DB Source Output].Columns[first_name]" />
+                      cachedDataType="text"
+                      cachedName="FirstName"
+                      lineageId="Package\Users\OLE DB Source.Outputs[OLE DB Source Output].Columns[FirstName]" />
                     <inputColumn
-                      refId="Package\Users\Data Conversion.Inputs[Data Conversion Input].Columns[last_name]"
+                      refId="Package\Users\Data Conversion.Inputs[Data Conversion Input].Columns[LastName]"
                       cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="150"
-                      cachedName="last_name"
-                      lineageId="Package\Users\OLE DB Source.Outputs[OLE DB Source Output].Columns[last_name]" />
+                      cachedDataType="text"
+                      cachedName="LastName"
+                      lineageId="Package\Users\OLE DB Source.Outputs[OLE DB Source Output].Columns[LastName]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
@@ -106,9 +114,11 @@
                   <outputColumns>
                     <outputColumn
                       refId="Package\Users\Data Conversion.Outputs[Data Conversion Output].Columns[id]"
-                      dataType="i4"
+                      codePage="1252"
+                      dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
+                      length="50"
                       lineageId="Package\Users\Data Conversion.Outputs[Data Conversion Output].Columns[id]"
                       name="id"
                       truncationRowDisposition="FailComponent">
@@ -126,8 +136,7 @@
                     </outputColumn>
                     <outputColumn
                       refId="Package\Users\Data Conversion.Outputs[Data Conversion Output].Columns[email]"
-                      codePage="1252"
-                      dataType="str"
+                      dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       length="255"
@@ -140,28 +149,6 @@
                           dataType="System.Int32"
                           description="Specifies the input column used as the source of data for the conversion."
                           name="SourceInputColumnLineageID">#{Package\Users\OLE DB Source.Outputs[OLE DB Source Output].Columns[email]}</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
-                          name="FastParse">false</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Users\Data Conversion.Outputs[Data Conversion Output].Columns[full_name]"
-                      codePage="1252"
-                      dataType="str"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      length="150"
-                      lineageId="Package\Users\Data Conversion.Outputs[Data Conversion Output].Columns[full_name]"
-                      name="full_name"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the input column used as the source of data for the conversion."
-                          name="SourceInputColumnLineageID">#{Package\Users\OLE DB Source.Outputs[OLE DB Source Output].Columns[full_name]}</property>
                         <property
                           dataType="System.Boolean"
                           description="Indicates whether the column uses the faster, locale-neutral parsing routines."
@@ -238,7 +225,7 @@
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      length="150"
+                      length="50"
                       lineageId="Package\Users\Data Conversion.Outputs[Data Conversion Output].Columns[first_name]"
                       name="first_name"
                       truncationRowDisposition="FailComponent">
@@ -247,7 +234,7 @@
                           containsID="true"
                           dataType="System.Int32"
                           description="Specifies the input column used as the source of data for the conversion."
-                          name="SourceInputColumnLineageID">#{Package\Users\OLE DB Source.Outputs[OLE DB Source Output].Columns[first_name]}</property>
+                          name="SourceInputColumnLineageID">#{Package\Users\OLE DB Source.Outputs[OLE DB Source Output].Columns[FirstName]}</property>
                         <property
                           dataType="System.Boolean"
                           description="Indicates whether the column uses the faster, locale-neutral parsing routines."
@@ -260,7 +247,7 @@
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      length="150"
+                      length="50"
                       lineageId="Package\Users\Data Conversion.Outputs[Data Conversion Output].Columns[last_name]"
                       name="last_name"
                       truncationRowDisposition="FailComponent">
@@ -269,7 +256,7 @@
                           containsID="true"
                           dataType="System.Int32"
                           description="Specifies the input column used as the source of data for the conversion."
-                          name="SourceInputColumnLineageID">#{Package\Users\OLE DB Source.Outputs[OLE DB Source Output].Columns[last_name]}</property>
+                          name="SourceInputColumnLineageID">#{Package\Users\OLE DB Source.Outputs[OLE DB Source Output].Columns[LastName]}</property>
                         <property
                           dataType="System.Boolean"
                           description="Indicates whether the column uses the faster, locale-neutral parsing routines."
@@ -376,25 +363,50 @@
                   name="OLE DB Destination Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Users\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[id]"
-                      cachedDataType="i4"
-                      cachedName="id"
-                      externalMetadataColumnId="Package\Users\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[id]"
-                      lineageId="Package\Users\OLE DB Source.Outputs[OLE DB Source Output].Columns[id]" />
-                    <inputColumn
-                      refId="Package\Users\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[email]"
+                      refId="Package\Users\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[first_name]"
                       cachedCodepage="1252"
                       cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="first_name"
+                      externalMetadataColumnId="Package\Users\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[first_name]"
+                      lineageId="Package\Users\Data Conversion.Outputs[Data Conversion Output].Columns[first_name]" />
+                    <inputColumn
+                      refId="Package\Users\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[last_name]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="last_name"
+                      externalMetadataColumnId="Package\Users\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[last_name]"
+                      lineageId="Package\Users\Data Conversion.Outputs[Data Conversion Output].Columns[last_name]" />
+                    <inputColumn
+                      refId="Package\Users\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[id]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="id"
+                      externalMetadataColumnId="Package\Users\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[id]"
+                      lineageId="Package\Users\Data Conversion.Outputs[Data Conversion Output].Columns[id]" />
+                    <inputColumn
+                      refId="Package\Users\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[role]"
+                      cachedDataType="numeric"
+                      cachedName="role"
+                      cachedPrecision="18"
+                      externalMetadataColumnId="Package\Users\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[role]"
+                      lineageId="Package\Users\Data Conversion.Outputs[Data Conversion Output].Columns[role]" />
+                    <inputColumn
+                      refId="Package\Users\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[active]"
+                      cachedDataType="numeric"
+                      cachedName="active"
+                      cachedPrecision="18"
+                      externalMetadataColumnId="Package\Users\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[active]"
+                      lineageId="Package\Users\Data Conversion.Outputs[Data Conversion Output].Columns[active]" />
+                    <inputColumn
+                      refId="Package\Users\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[email]"
+                      cachedDataType="wstr"
                       cachedLength="255"
                       cachedName="email"
                       externalMetadataColumnId="Package\Users\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[email]"
-                      lineageId="Package\Users\OLE DB Source.Outputs[OLE DB Source Output].Columns[email]" />
-                    <inputColumn
-                      refId="Package\Users\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[role]"
-                      cachedDataType="ui1"
-                      cachedName="role"
-                      externalMetadataColumnId="Package\Users\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[role]"
-                      lineageId="Package\Users\OLE DB Source.Outputs[OLE DB Source Output].Columns[role]" />
+                      lineageId="Package\Users\Data Conversion.Outputs[Data Conversion Output].Columns[email]" />
                     <inputColumn
                       refId="Package\Users\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[phone]"
                       cachedCodepage="1252"
@@ -402,29 +414,7 @@
                       cachedLength="10"
                       cachedName="phone"
                       externalMetadataColumnId="Package\Users\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[phone]"
-                      lineageId="Package\Users\OLE DB Source.Outputs[OLE DB Source Output].Columns[phone]" />
-                    <inputColumn
-                      refId="Package\Users\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[active]"
-                      cachedDataType="ui1"
-                      cachedName="active"
-                      externalMetadataColumnId="Package\Users\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[active]"
-                      lineageId="Package\Users\OLE DB Source.Outputs[OLE DB Source Output].Columns[active]" />
-                    <inputColumn
-                      refId="Package\Users\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[first_name]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="150"
-                      cachedName="first_name"
-                      externalMetadataColumnId="Package\Users\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[first_name]"
-                      lineageId="Package\Users\OLE DB Source.Outputs[OLE DB Source Output].Columns[first_name]" />
-                    <inputColumn
-                      refId="Package\Users\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[last_name]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="150"
-                      cachedName="last_name"
-                      externalMetadataColumnId="Package\Users\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[last_name]"
-                      lineageId="Package\Users\OLE DB Source.Outputs[OLE DB Source Output].Columns[last_name]" />
+                      lineageId="Package\Users\Data Conversion.Outputs[Data Conversion Output].Columns[phone]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -515,18 +505,23 @@
                   dataType="System.String"
                   description="The SQL command to be executed."
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT U.[id]
-	  ,0 AS role
-	  ,[state] As active
-      ,[email]
-      ,[full_name]
-	  ,SUBSTRING([full_name], 1, CHARINDEX(' ', [full_name]) - 1) AS first_name     
-      ,SUBSTRING([full_name], CHARINDEX(' ', [full_name]) + 1, LEN([full_name]) - CHARINDEX(' ', [full_name])) AS last_name
-      ,REPLACE([phone],'-','') As phone
-  FROM [BejucoBeachHouse].[dbo].[User] U
-	Left JOIN [BejucoBeachHouse].[dbo].[Reservation] R ON U.id = R.userid
-	WHERE R.startDate &gt; GETDATE()
-GROUP BY U.id, U.email, U.full_name, u.state,  u.role, u.personal_id, u.phone</property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">Select a.id
+	  ,a.[state] as active
+	  ,0 AS role    
+      ,FirstName = Pos1+case when Pos3 is not null then ' 'else '' end
+      ,LastName  = case when Pos3 is null then Pos2 else Pos3 end
+      ,email = case when Pos3 is null then LOWER(pos1)+'.'+Lower(pos2)+'@3pillarglobal.com' else LOWER(pos1)+'.'+Lower(pos3)+'@3pillarglobal.com' end
+	  ,REPLACE(a.[phone],'-','') As phone
+ From dbo.[User] A
+ Cross Apply (
+    Select Pos1 = xDim.value('/x[1]','varchar(max)')
+          ,Pos2 = xDim.value('/x[2]','varchar(max)')
+          ,Pos3 = xDim.value('/x[3]','varchar(max)')
+          ,Pos4 = xDim.value('/x[4]','varchar(max)')
+     From  (Select Cast('&lt;x&gt;' + replace((Select substring(full_name,1,charindex(' and ',full_name+' and ')-1) as [*] For XML Path('')),' ','&lt;/x&gt;&lt;x&gt;')+'&lt;/x&gt;' as xml) as xDim) as A 
+ ) B Left JOIN [dbo].[Reservation] R ON a.id = R.userid
+    WHERE R.startDate &gt; GETDATE()
+GROUP BY a.id, a.email, a.full_name, a.state, a.role, a.phone, B.Pos1, B.Pos2, B.Pos3</property>
                 <property
                   dataType="System.String"
                   description="The variable that contains the SQL command to be executed."
@@ -583,17 +578,6 @@ GROUP BY U.id, U.email, U.full_name, u.state,  u.role, u.personal_id, u.phone</p
                       name="email"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Users\OLE DB Source.Outputs[OLE DB Source Output].Columns[full_name]"
-                      codePage="1252"
-                      dataType="str"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Users\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[full_name]"
-                      length="150"
-                      lineageId="Package\Users\OLE DB Source.Outputs[OLE DB Source Output].Columns[full_name]"
-                      name="full_name"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
                       refId="Package\Users\OLE DB Source.Outputs[OLE DB Source Output].Columns[role]"
                       dataType="ui1"
                       errorOrTruncationOperation="Conversion"
@@ -623,26 +607,24 @@ GROUP BY U.id, U.email, U.full_name, u.state,  u.role, u.personal_id, u.phone</p
                       name="active"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Users\OLE DB Source.Outputs[OLE DB Source Output].Columns[first_name]"
+                      refId="Package\Users\OLE DB Source.Outputs[OLE DB Source Output].Columns[FirstName]"
                       codePage="1252"
-                      dataType="str"
+                      dataType="text"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Users\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[first_name]"
-                      length="150"
-                      lineageId="Package\Users\OLE DB Source.Outputs[OLE DB Source Output].Columns[first_name]"
-                      name="first_name"
+                      externalMetadataColumnId="Package\Users\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FirstName]"
+                      lineageId="Package\Users\OLE DB Source.Outputs[OLE DB Source Output].Columns[FirstName]"
+                      name="FirstName"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Users\OLE DB Source.Outputs[OLE DB Source Output].Columns[last_name]"
+                      refId="Package\Users\OLE DB Source.Outputs[OLE DB Source Output].Columns[LastName]"
                       codePage="1252"
-                      dataType="str"
+                      dataType="text"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Users\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[last_name]"
-                      length="150"
-                      lineageId="Package\Users\OLE DB Source.Outputs[OLE DB Source Output].Columns[last_name]"
-                      name="last_name"
+                      externalMetadataColumnId="Package\Users\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LastName]"
+                      lineageId="Package\Users\OLE DB Source.Outputs[OLE DB Source Output].Columns[LastName]"
+                      name="LastName"
                       truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
@@ -654,15 +636,8 @@ GROUP BY U.id, U.email, U.full_name, u.state,  u.role, u.personal_id, u.phone</p
                     <externalMetadataColumn
                       refId="Package\Users\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[email]"
                       codePage="1252"
-                      dataType="str"
-                      length="255"
+                      dataType="text"
                       name="email" />
-                    <externalMetadataColumn
-                      refId="Package\Users\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[full_name]"
-                      codePage="1252"
-                      dataType="str"
-                      length="150"
-                      name="full_name" />
                     <externalMetadataColumn
                       refId="Package\Users\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[role]"
                       dataType="i4"
@@ -678,17 +653,15 @@ GROUP BY U.id, U.email, U.full_name, u.state,  u.role, u.personal_id, u.phone</p
                       dataType="ui1"
                       name="active" />
                     <externalMetadataColumn
-                      refId="Package\Users\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[first_name]"
+                      refId="Package\Users\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FirstName]"
                       codePage="1252"
-                      dataType="str"
-                      length="150"
-                      name="first_name" />
+                      dataType="text"
+                      name="FirstName" />
                     <externalMetadataColumn
-                      refId="Package\Users\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[last_name]"
+                      refId="Package\Users\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LastName]"
                       codePage="1252"
-                      dataType="str"
-                      length="150"
-                      name="last_name" />
+                      dataType="text"
+                      name="LastName" />
                   </externalMetadataColumns>
                 </output>
                 <output
@@ -704,8 +677,7 @@ GROUP BY U.id, U.email, U.full_name, u.state,  u.role, u.personal_id, u.phone</p
                     <outputColumn
                       refId="Package\Users\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[email]"
                       codePage="1252"
-                      dataType="str"
-                      length="255"
+                      dataType="text"
                       lineageId="Package\Users\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[email]"
                       name="email" />
                     <outputColumn
@@ -714,31 +686,22 @@ GROUP BY U.id, U.email, U.full_name, u.state,  u.role, u.personal_id, u.phone</p
                       lineageId="Package\Users\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[active]"
                       name="active" />
                     <outputColumn
-                      refId="Package\Users\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[full_name]"
+                      refId="Package\Users\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FirstName]"
                       codePage="1252"
-                      dataType="str"
-                      length="150"
-                      lineageId="Package\Users\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[full_name]"
-                      name="full_name" />
+                      dataType="text"
+                      lineageId="Package\Users\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FirstName]"
+                      name="FirstName" />
+                    <outputColumn
+                      refId="Package\Users\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LastName]"
+                      codePage="1252"
+                      dataType="text"
+                      lineageId="Package\Users\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LastName]"
+                      name="LastName" />
                     <outputColumn
                       refId="Package\Users\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[role]"
                       dataType="i4"
                       lineageId="Package\Users\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[role]"
                       name="role" />
-                    <outputColumn
-                      refId="Package\Users\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[first_name]"
-                      codePage="1252"
-                      dataType="str"
-                      length="150"
-                      lineageId="Package\Users\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[first_name]"
-                      name="first_name" />
-                    <outputColumn
-                      refId="Package\Users\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[last_name]"
-                      codePage="1252"
-                      dataType="str"
-                      length="150"
-                      lineageId="Package\Users\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[last_name]"
-                      name="last_name" />
                     <outputColumn
                       refId="Package\Users\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[phone]"
                       codePage="1252"
@@ -780,6 +743,16 @@ GROUP BY U.id, U.email, U.full_name, u.state,  u.role, u.personal_id, u.phone</p
       </DTS:ObjectData>
     </DTS:Executable>
   </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{2F1101AB-5A46-44D0-B85F-42416B5D13F7}"
+      DTS:From="Package\Update Users Info"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Users" />
+  </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
 <!--If you manually edit this section and make a mistake, you can delete it. -->
@@ -791,11 +764,37 @@ GROUP BY U.id, U.email, U.full_name, u.state,  u.role, u.personal_id, u.phone</p
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="105,42"
           Id="Package\Users"
-          TopLeft="167,77" />
+          TopLeft="37,122" />
+        <NodeLayout
+          Size="164,42"
+          Id="Package\Update Users Info"
+          TopLeft="5.5,5.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="88.5,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,74.5"
+              Start="0,0"
+              End="0,67">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,67" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </Package>
