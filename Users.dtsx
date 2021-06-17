@@ -11,12 +11,527 @@
   DTS:LocaleID="5130"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="4"
-  DTS:VersionGUID="{C4510637-A66C-475D-BDD2-CB6FA7AA1C8D}">
+  DTS:VersionBuild="5"
+  DTS:VersionGUID="{09A4C0DF-CC4D-4A40-A38E-5ECA78F94963}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
   <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Reservations"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{98FCFFFF-3728-4913-9585-BF74C2ACA01E}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Reservations"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Reservations\Reservation Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Reservation Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Reservations]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">true</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Reservations\Reservation Destination.Connections[OleDbConnection]"
+                  connectionManagerID="{FBC1D8D0-38D7-47F2-A8A9-5F350A0CD65F}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[CRH-LAP-103_SQLEXPRESS.BeachHouseDB]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Reservations\Reservation Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Reservations\Reservation Destination.Inputs[OLE DB Destination Input].Columns[id]"
+                      cachedDataType="i4"
+                      cachedName="id"
+                      externalMetadataColumnId="Package\Reservations\Reservation Destination.Inputs[OLE DB Destination Input].ExternalColumns[Id]"
+                      lineageId="Package\Reservations\Reservations Source.Outputs[OLE DB Source Output].Columns[id]" />
+                    <inputColumn
+                      refId="Package\Reservations\Reservation Destination.Inputs[OLE DB Destination Input].Columns[date]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="date"
+                      externalMetadataColumnId="Package\Reservations\Reservation Destination.Inputs[OLE DB Destination Input].ExternalColumns[date]"
+                      lineageId="Package\Reservations\Reservations Source.Outputs[OLE DB Source Output].Columns[date]" />
+                    <inputColumn
+                      refId="Package\Reservations\Reservation Destination.Inputs[OLE DB Destination Input].Columns[user_id]"
+                      cachedDataType="i4"
+                      cachedName="user_id"
+                      externalMetadataColumnId="Package\Reservations\Reservation Destination.Inputs[OLE DB Destination Input].ExternalColumns[user_id]"
+                      lineageId="Package\Reservations\Reservations Source.Outputs[OLE DB Source Output].Columns[user_id]" />
+                    <inputColumn
+                      refId="Package\Reservations\Reservation Destination.Inputs[OLE DB Destination Input].Columns[location_id]"
+                      cachedDataType="i4"
+                      cachedName="location_id"
+                      externalMetadataColumnId="Package\Reservations\Reservation Destination.Inputs[OLE DB Destination Input].ExternalColumns[location_id]"
+                      lineageId="Package\Reservations\Reservations Source.Outputs[OLE DB Source Output].Columns[location_id]" />
+                    <inputColumn
+                      refId="Package\Reservations\Reservation Destination.Inputs[OLE DB Destination Input].Columns[active]"
+                      cachedDataType="i4"
+                      cachedName="active"
+                      externalMetadataColumnId="Package\Reservations\Reservation Destination.Inputs[OLE DB Destination Input].ExternalColumns[active]"
+                      lineageId="Package\Reservations\Reservations Source.Outputs[OLE DB Source Output].Columns[active]" />
+                    <inputColumn
+                      refId="Package\Reservations\Reservation Destination.Inputs[OLE DB Destination Input].Columns[notified]"
+                      cachedDataType="i4"
+                      cachedName="notified"
+                      externalMetadataColumnId="Package\Reservations\Reservation Destination.Inputs[OLE DB Destination Input].ExternalColumns[notified]"
+                      lineageId="Package\Reservations\Reservations Source.Outputs[OLE DB Source Output].Columns[notified]" />
+                    <inputColumn
+                      refId="Package\Reservations\Reservation Destination.Inputs[OLE DB Destination Input].Columns[checkIn]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="checkIn"
+                      externalMetadataColumnId="Package\Reservations\Reservation Destination.Inputs[OLE DB Destination Input].ExternalColumns[checkIn]"
+                      lineageId="Package\Reservations\Reservations Source.Outputs[OLE DB Source Output].Columns[checkIn]" />
+                    <inputColumn
+                      refId="Package\Reservations\Reservation Destination.Inputs[OLE DB Destination Input].Columns[checkOut]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="checkOut"
+                      externalMetadataColumnId="Package\Reservations\Reservation Destination.Inputs[OLE DB Destination Input].ExternalColumns[checkOut]"
+                      lineageId="Package\Reservations\Reservations Source.Outputs[OLE DB Source Output].Columns[checkOut]" />
+                    <inputColumn
+                      refId="Package\Reservations\Reservation Destination.Inputs[OLE DB Destination Input].Columns[nights]"
+                      cachedDataType="i4"
+                      cachedName="nights"
+                      externalMetadataColumnId="Package\Reservations\Reservation Destination.Inputs[OLE DB Destination Input].ExternalColumns[nights]"
+                      lineageId="Package\Reservations\Reservations Source.Outputs[OLE DB Source Output].Columns[nights]" />
+                    <inputColumn
+                      refId="Package\Reservations\Reservation Destination.Inputs[OLE DB Destination Input].Columns[price]"
+                      cachedDataType="numeric"
+                      cachedName="price"
+                      cachedPrecision="18"
+                      externalMetadataColumnId="Package\Reservations\Reservation Destination.Inputs[OLE DB Destination Input].ExternalColumns[price]"
+                      lineageId="Package\Reservations\Reservations Source.Outputs[OLE DB Source Output].Columns[price]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Reservations\Reservation Destination.Inputs[OLE DB Destination Input].ExternalColumns[Id]"
+                      dataType="i8"
+                      name="Id" />
+                    <externalMetadataColumn
+                      refId="Package\Reservations\Reservation Destination.Inputs[OLE DB Destination Input].ExternalColumns[date]"
+                      dataType="dbTimeStamp"
+                      name="date" />
+                    <externalMetadataColumn
+                      refId="Package\Reservations\Reservation Destination.Inputs[OLE DB Destination Input].ExternalColumns[user_id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="user_id" />
+                    <externalMetadataColumn
+                      refId="Package\Reservations\Reservation Destination.Inputs[OLE DB Destination Input].ExternalColumns[location_id]"
+                      dataType="i8"
+                      name="location_id" />
+                    <externalMetadataColumn
+                      refId="Package\Reservations\Reservation Destination.Inputs[OLE DB Destination Input].ExternalColumns[active]"
+                      dataType="bool"
+                      name="active" />
+                    <externalMetadataColumn
+                      refId="Package\Reservations\Reservation Destination.Inputs[OLE DB Destination Input].ExternalColumns[notified]"
+                      dataType="bool"
+                      name="notified" />
+                    <externalMetadataColumn
+                      refId="Package\Reservations\Reservation Destination.Inputs[OLE DB Destination Input].ExternalColumns[checkIn]"
+                      dataType="dbDate"
+                      name="checkIn" />
+                    <externalMetadataColumn
+                      refId="Package\Reservations\Reservation Destination.Inputs[OLE DB Destination Input].ExternalColumns[checkOut]"
+                      dataType="dbDate"
+                      name="checkOut" />
+                    <externalMetadataColumn
+                      refId="Package\Reservations\Reservation Destination.Inputs[OLE DB Destination Input].ExternalColumns[nights]"
+                      dataType="i4"
+                      name="nights" />
+                    <externalMetadataColumn
+                      refId="Package\Reservations\Reservation Destination.Inputs[OLE DB Destination Input].ExternalColumns[price]"
+                      dataType="numeric"
+                      name="price"
+                      precision="18" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Reservations\Reservation Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Reservations\Reservation Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Reservations\Reservation Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Reservations\Reservation Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Reservations\Reservation Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Reservations\Reservation Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Reservations\Reservations Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Reservations Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT R.[id]
+	  , GETDATE() AS date
+      ,R.[userid] AS 'user_id'
+	  ,1 AS location_id
+	  ,1 AS active
+	  ,0 AS notified      
+	  ,CAST(CONVERT(NVARCHAR, [startDate],112) AS DATETIME) AS checkIn
+	  ,CAST(CONVERT(NVARCHAR, [endDate],112) AS DATETIME) AS checkOut
+	  , DATEDIFF(DAY, [startDate], [endDate]) AS nights
+      ,R.[total_charge] AS price     
+  FROM [BejucoBeachHouse].[dbo].[Reservation] R
+	LEFT JOIN [BejucoBeachHouse].[dbo].[User] U ON R.userid = U.id
+	WHERE R.startDate &gt; GETDATE()</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Reservations\Reservations Source.Connections[OleDbConnection]"
+                  connectionManagerID="{F4B88D07-F5A7-463C-9A06-ADCDDFCCE788}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[CRH-LAP-103_SQLEXPRESS.BejucoBeachHouse]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Reservations\Reservations Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Reservations\Reservations Source.Outputs[OLE DB Source Output].Columns[id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Reservations\Reservations Source.Outputs[OLE DB Source Output].ExternalColumns[id]"
+                      lineageId="Package\Reservations\Reservations Source.Outputs[OLE DB Source Output].Columns[id]"
+                      name="id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Reservations\Reservations Source.Outputs[OLE DB Source Output].Columns[date]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Reservations\Reservations Source.Outputs[OLE DB Source Output].ExternalColumns[date]"
+                      lineageId="Package\Reservations\Reservations Source.Outputs[OLE DB Source Output].Columns[date]"
+                      name="date"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Reservations\Reservations Source.Outputs[OLE DB Source Output].Columns[user_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Reservations\Reservations Source.Outputs[OLE DB Source Output].ExternalColumns[user_id]"
+                      lineageId="Package\Reservations\Reservations Source.Outputs[OLE DB Source Output].Columns[user_id]"
+                      name="user_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Reservations\Reservations Source.Outputs[OLE DB Source Output].Columns[location_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Reservations\Reservations Source.Outputs[OLE DB Source Output].ExternalColumns[location_id]"
+                      lineageId="Package\Reservations\Reservations Source.Outputs[OLE DB Source Output].Columns[location_id]"
+                      name="location_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Reservations\Reservations Source.Outputs[OLE DB Source Output].Columns[active]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Reservations\Reservations Source.Outputs[OLE DB Source Output].ExternalColumns[active]"
+                      lineageId="Package\Reservations\Reservations Source.Outputs[OLE DB Source Output].Columns[active]"
+                      name="active"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Reservations\Reservations Source.Outputs[OLE DB Source Output].Columns[notified]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Reservations\Reservations Source.Outputs[OLE DB Source Output].ExternalColumns[notified]"
+                      lineageId="Package\Reservations\Reservations Source.Outputs[OLE DB Source Output].Columns[notified]"
+                      name="notified"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Reservations\Reservations Source.Outputs[OLE DB Source Output].Columns[checkIn]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Reservations\Reservations Source.Outputs[OLE DB Source Output].ExternalColumns[checkIn]"
+                      lineageId="Package\Reservations\Reservations Source.Outputs[OLE DB Source Output].Columns[checkIn]"
+                      name="checkIn"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Reservations\Reservations Source.Outputs[OLE DB Source Output].Columns[checkOut]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Reservations\Reservations Source.Outputs[OLE DB Source Output].ExternalColumns[checkOut]"
+                      lineageId="Package\Reservations\Reservations Source.Outputs[OLE DB Source Output].Columns[checkOut]"
+                      name="checkOut"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Reservations\Reservations Source.Outputs[OLE DB Source Output].Columns[nights]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Reservations\Reservations Source.Outputs[OLE DB Source Output].ExternalColumns[nights]"
+                      lineageId="Package\Reservations\Reservations Source.Outputs[OLE DB Source Output].Columns[nights]"
+                      name="nights"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Reservations\Reservations Source.Outputs[OLE DB Source Output].Columns[price]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Reservations\Reservations Source.Outputs[OLE DB Source Output].ExternalColumns[price]"
+                      lineageId="Package\Reservations\Reservations Source.Outputs[OLE DB Source Output].Columns[price]"
+                      name="price"
+                      precision="18"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Reservations\Reservations Source.Outputs[OLE DB Source Output].ExternalColumns[id]"
+                      dataType="i4"
+                      name="id" />
+                    <externalMetadataColumn
+                      refId="Package\Reservations\Reservations Source.Outputs[OLE DB Source Output].ExternalColumns[date]"
+                      dataType="dbTimeStamp"
+                      name="date" />
+                    <externalMetadataColumn
+                      refId="Package\Reservations\Reservations Source.Outputs[OLE DB Source Output].ExternalColumns[user_id]"
+                      dataType="i4"
+                      name="user_id" />
+                    <externalMetadataColumn
+                      refId="Package\Reservations\Reservations Source.Outputs[OLE DB Source Output].ExternalColumns[location_id]"
+                      dataType="i4"
+                      name="location_id" />
+                    <externalMetadataColumn
+                      refId="Package\Reservations\Reservations Source.Outputs[OLE DB Source Output].ExternalColumns[active]"
+                      dataType="i4"
+                      name="active" />
+                    <externalMetadataColumn
+                      refId="Package\Reservations\Reservations Source.Outputs[OLE DB Source Output].ExternalColumns[notified]"
+                      dataType="i4"
+                      name="notified" />
+                    <externalMetadataColumn
+                      refId="Package\Reservations\Reservations Source.Outputs[OLE DB Source Output].ExternalColumns[checkIn]"
+                      dataType="dbTimeStamp"
+                      name="checkIn" />
+                    <externalMetadataColumn
+                      refId="Package\Reservations\Reservations Source.Outputs[OLE DB Source Output].ExternalColumns[checkOut]"
+                      dataType="dbTimeStamp"
+                      name="checkOut" />
+                    <externalMetadataColumn
+                      refId="Package\Reservations\Reservations Source.Outputs[OLE DB Source Output].ExternalColumns[nights]"
+                      dataType="i4"
+                      name="nights" />
+                    <externalMetadataColumn
+                      refId="Package\Reservations\Reservations Source.Outputs[OLE DB Source Output].ExternalColumns[price]"
+                      dataType="numeric"
+                      name="price"
+                      precision="18" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Reservations\Reservations Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Reservations\Reservations Source.Outputs[OLE DB Source Error Output].Columns[id]"
+                      dataType="i4"
+                      lineageId="Package\Reservations\Reservations Source.Outputs[OLE DB Source Error Output].Columns[id]"
+                      name="id" />
+                    <outputColumn
+                      refId="Package\Reservations\Reservations Source.Outputs[OLE DB Source Error Output].Columns[date]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Reservations\Reservations Source.Outputs[OLE DB Source Error Output].Columns[date]"
+                      name="date" />
+                    <outputColumn
+                      refId="Package\Reservations\Reservations Source.Outputs[OLE DB Source Error Output].Columns[user_id]"
+                      dataType="i4"
+                      lineageId="Package\Reservations\Reservations Source.Outputs[OLE DB Source Error Output].Columns[user_id]"
+                      name="user_id" />
+                    <outputColumn
+                      refId="Package\Reservations\Reservations Source.Outputs[OLE DB Source Error Output].Columns[location_id]"
+                      dataType="i4"
+                      lineageId="Package\Reservations\Reservations Source.Outputs[OLE DB Source Error Output].Columns[location_id]"
+                      name="location_id" />
+                    <outputColumn
+                      refId="Package\Reservations\Reservations Source.Outputs[OLE DB Source Error Output].Columns[active]"
+                      dataType="i4"
+                      lineageId="Package\Reservations\Reservations Source.Outputs[OLE DB Source Error Output].Columns[active]"
+                      name="active" />
+                    <outputColumn
+                      refId="Package\Reservations\Reservations Source.Outputs[OLE DB Source Error Output].Columns[notified]"
+                      dataType="i4"
+                      lineageId="Package\Reservations\Reservations Source.Outputs[OLE DB Source Error Output].Columns[notified]"
+                      name="notified" />
+                    <outputColumn
+                      refId="Package\Reservations\Reservations Source.Outputs[OLE DB Source Error Output].Columns[checkIn]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Reservations\Reservations Source.Outputs[OLE DB Source Error Output].Columns[checkIn]"
+                      name="checkIn" />
+                    <outputColumn
+                      refId="Package\Reservations\Reservations Source.Outputs[OLE DB Source Error Output].Columns[checkOut]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Reservations\Reservations Source.Outputs[OLE DB Source Error Output].Columns[checkOut]"
+                      name="checkOut" />
+                    <outputColumn
+                      refId="Package\Reservations\Reservations Source.Outputs[OLE DB Source Error Output].Columns[nights]"
+                      dataType="i4"
+                      lineageId="Package\Reservations\Reservations Source.Outputs[OLE DB Source Error Output].Columns[nights]"
+                      name="nights" />
+                    <outputColumn
+                      refId="Package\Reservations\Reservations Source.Outputs[OLE DB Source Error Output].Columns[price]"
+                      dataType="numeric"
+                      lineageId="Package\Reservations\Reservations Source.Outputs[OLE DB Source Error Output].Columns[price]"
+                      name="price"
+                      precision="18" />
+                    <outputColumn
+                      refId="Package\Reservations\Reservations Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Reservations\Reservations Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Reservations\Reservations Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Reservations\Reservations Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Reservations.Paths[OLE DB Source Output]"
+              endId="Package\Reservations\Reservation Destination.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Reservations\Reservations Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\Update Users Info"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
@@ -752,6 +1267,14 @@ GROUP BY a.id, a.email, a.full_name, a.state, a.role, a.phone, B.Pos1, B.Pos2, B
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint"
       DTS:To="Package\Users" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{082FBEB7-A7AA-4BAE-BFCD-50CFDB35B8B2}"
+      DTS:From="Package\Users"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Reservations" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
@@ -764,7 +1287,7 @@ GROUP BY a.id, a.email, a.full_name, a.state, a.role, a.phone, B.Pos1, B.Pos2, B
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="105,42"
           Id="Package\Users"
@@ -787,6 +1310,44 @@ GROUP BY a.id, a.email, a.full_name, a.state, a.role, a.phone, B.Pos1, B.Pos2, B
                   Capacity="5">
                   <mssgle:LineSegment
                     End="0,67" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="139,42"
+          Id="Package\Reservations"
+          TopLeft="131,240" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="89.5,164">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="111,76"
+              Start="0,0"
+              End="111,68.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,34"
+                    Point2="0,38"
+                    Point3="4,38" />
+                  <mssgle:LineSegment
+                    End="107,38" />
+                  <mssgle:CubicBezierSegment
+                    Point1="107,38"
+                    Point2="111,38"
+                    Point3="111,42" />
+                  <mssgle:LineSegment
+                    End="111,68.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -901,6 +1462,77 @@ GROUP BY a.id, a.email, a.full_name, a.state, a.role, a.phone, B.Pos1, B.Pos2, B
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\Users\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Reservations">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="174,42"
+          Id="Package\Reservations\Reservations Source"
+          TopLeft="54,42" />
+        <NodeLayout
+          Size="190,42"
+          Id="Package\Reservations\Reservation Destination"
+          TopLeft="203,249" />
+        <EdgeLayout
+          Id="Package\Reservations.Paths[OLE DB Source Output]"
+          TopLeft="141,84">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="157,165"
+              Start="0,0"
+              End="157,157.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,78.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,78.5"
+                    Point2="0,82.5"
+                    Point3="4,82.5" />
+                  <mssgle:LineSegment
+                    End="153,82.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="153,82.5"
+                    Point2="157,82.5"
+                    Point3="157,86.5" />
+                  <mssgle:LineSegment
+                    End="157,157.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Reservations\Reservations Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Reservations\Reservation Destination">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
