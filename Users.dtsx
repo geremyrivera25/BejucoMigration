@@ -11,8 +11,8 @@
   DTS:LocaleID="5130"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="13"
-  DTS:VersionGUID="{7D61886D-555B-46DC-888B-152F34F26B0F}">
+  DTS:VersionBuild="14"
+  DTS:VersionGUID="{4F5F65A5-2B66-4727-9E3B-4EE554A4F490}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -540,7 +540,7 @@
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{FBC1D8D0-38D7-47F2-A8A9-5F350A0CD65F}"
-          SQLTask:SqlStatementSource="DECLARE @cnt INT = 1;&#xA;WHILE @cnt &lt; 62&#xA;BEGIN&#xA;   DECLARE @cnt2 INT = (SELECT DATEDIFF(DAY,checkIn, checkOut) FROM Reservations where id = @cnt);&#xA;   DECLARE @i INT = 0;&#xA;   DECLARE @mydate DATE= (select checkIn from Reservations where id = @cnt);&#xA;   WHILE @i &lt; (@cnt2 + 1)&#xA;&#x9;BEGIN&#xA;&#x9;&#x9;INSERT INTO ReservationDetails (reservation_id,[date],rate) VALUES (@cnt,DATEADD(day,@i,@mydate),999);&#xA;&#x9;&#x9;SET @i = @i + 1;&#xA;&#x9;END;&#xA;   SET @cnt = @cnt + 1;&#xA;END;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="DECLARE @cnt INT = 1;&#xA;WHILE @cnt &lt; 70&#xA;BEGIN&#xA;   DECLARE @cnt2 INT = (SELECT DATEDIFF(DAY,checkIn, checkOut) FROM Reservations where id = @cnt);&#xA;   DECLARE @i INT = 0;&#xA;   DECLARE @mydate DATE= (select checkIn from Reservations where id = @cnt);&#xA;   WHILE @i &lt; (@cnt2 + 1)&#xA;&#x9;BEGIN&#xA;&#x9;&#x9;INSERT INTO ReservationDetails (reservation_id,[date],rate) VALUES (@cnt,DATEADD(day,@i,@mydate),999);&#xA;&#x9;&#x9;SET @i = @i + 1;&#xA;&#x9;END;&#xA;   SET @cnt = @cnt + 1;&#xA;END;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -1308,13 +1308,21 @@ GROUP BY a.id, a.email, a.full_name, a.state, a.role, a.phone, B.Pos1, B.Pos2, B
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="105,42"
-          Id="Package\Users"
-          TopLeft="107,95" />
+          Size="139,42"
+          Id="Package\Reservations"
+          TopLeft="236,185" />
+        <NodeLayout
+          Size="203,42"
+          Id="Package\Update ReservationDetails"
+          TopLeft="382,291" />
         <NodeLayout
           Size="164,42"
           Id="Package\Update Users Info"
           TopLeft="5.5,5.5" />
+        <NodeLayout
+          Size="105,42"
+          Id="Package\Users"
+          TopLeft="107,95" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
           TopLeft="87.5,47.5">
@@ -1349,10 +1357,6 @@ GROUP BY a.id, a.email, a.full_name, a.state, a.role, a.phone, B.Pos1, B.Pos2, B
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="139,42"
-          Id="Package\Reservations"
-          TopLeft="236,185" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
           TopLeft="159.5,137">
@@ -1387,10 +1391,6 @@ GROUP BY a.id, a.email, a.full_name, a.state, a.role, a.phone, B.Pos1, B.Pos2, B
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="203,42"
-          Id="Package\Update ReservationDetails"
-          TopLeft="382,291" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 2]"
           TopLeft="305.5,227">
@@ -1429,124 +1429,10 @@ GROUP BY a.id, a.email, a.full_name, a.state, a.role, a.phone, B.Pos1, B.Pos2, B
     </LayoutInfo>
   </Package>
   <TaskHost
-    design-time-name="Package\Users">
-    <LayoutInfo>
-      <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="150,42"
-          Id="Package\Users\OLE DB Source"
-          TopLeft="129,39" />
-        <NodeLayout
-          Size="171,42"
-          Id="Package\Users\OLE DB Destination"
-          TopLeft="325,338" />
-        <NodeLayout
-          Size="156,42"
-          Id="Package\Users\Data Conversion"
-          TopLeft="252,170" />
-        <EdgeLayout
-          Id="Package\Users.Paths[OLE DB Source Output]"
-          TopLeft="204,81">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="126,89"
-              Start="0,0"
-              End="126,81.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,40.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,40.5"
-                    Point2="0,44.5"
-                    Point3="4,44.5" />
-                  <mssgle:LineSegment
-                    End="122,44.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="122,44.5"
-                    Point2="126,44.5"
-                    Point3="126,48.5" />
-                  <mssgle:LineSegment
-                    End="126,81.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Users.Paths[Data Conversion Output]"
-          TopLeft="330,212">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="80.5,126"
-              Start="0,0"
-              End="80.5,118.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,59" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,59"
-                    Point2="0,63"
-                    Point3="4,63" />
-                  <mssgle:LineSegment
-                    End="76.5,63" />
-                  <mssgle:CubicBezierSegment
-                    Point1="76.5,63"
-                    Point2="80.5,63"
-                    Point3="80.5,67" />
-                  <mssgle:LineSegment
-                    End="80.5,118.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-      </GraphLayout>
-    </LayoutInfo>
-  </TaskHost>
-  <PipelineComponentMetadata
-    design-time-name="Package\Users\OLE DB Source">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Users\OLE DB Destination">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <TaskHost
     design-time-name="Package\Reservations">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="174,42"
           Id="Package\Reservations\Reservations Source"
@@ -1586,12 +1472,27 @@ GROUP BY a.id, a.email, a.full_name, a.state, a.role, a.phone, B.Pos1, B.Pos2, B
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Reservations\Reservation Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\Reservations\Reservations Source">
     <Properties>
@@ -1600,8 +1501,113 @@ GROUP BY a.id, a.email, a.full_name, a.state, a.role, a.phone, B.Pos1, B.Pos2, B
       </Property>
     </Properties>
   </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Users">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="150,42"
+          Id="Package\Users\OLE DB Source"
+          TopLeft="129,39" />
+        <NodeLayout
+          Size="156,42"
+          Id="Package\Users\Data Conversion"
+          TopLeft="252,170" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\Users\OLE DB Destination"
+          TopLeft="325,338" />
+        <EdgeLayout
+          Id="Package\Users.Paths[OLE DB Source Output]"
+          TopLeft="204,81">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="126,89"
+              Start="0,0"
+              End="126,81.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,40.5"
+                    Point2="0,44.5"
+                    Point3="4,44.5" />
+                  <mssgle:LineSegment
+                    End="122,44.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="122,44.5"
+                    Point2="126,44.5"
+                    Point3="126,48.5" />
+                  <mssgle:LineSegment
+                    End="126,81.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Users.Paths[Data Conversion Output]"
+          TopLeft="330,212">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="80.5,126"
+              Start="0,0"
+              End="80.5,118.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,59" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,59"
+                    Point2="0,63"
+                    Point3="4,63" />
+                  <mssgle:LineSegment
+                    End="76.5,63" />
+                  <mssgle:CubicBezierSegment
+                    Point1="76.5,63"
+                    Point2="80.5,63"
+                    Point3="80.5,67" />
+                  <mssgle:LineSegment
+                    End="80.5,118.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Reservations\Reservation Destination">
+    design-time-name="Package\Users\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Users\OLE DB Destination">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
